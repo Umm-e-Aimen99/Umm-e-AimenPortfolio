@@ -1,0 +1,6 @@
+{
+  "name": "Umm-e-Aimen Portfolio",
+  "description": "Personal responsive portfolio app for Software Engineering student Umm-e-Aimen.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,2205 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Umm-e-Aimen — Software Engineering Student | Desktop Portfolio</title>
+  <meta name="description" content="Official personal portfolio of Umm-e-Aimen, Software Engineering student at COMSATS University Islamabad. Specialized in Java OOP, C++ DSA, React Native, and Web Technologies.">
+  
+  <!-- Preconnect & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #07080C;
+      --bg-alt: #0D0F16;
+      --surface: #121520;
+      --surface-hover: #181C2B;
+      --surface-card: #141724;
+      --surface-border: rgba(255, 255, 255, 0.08);
+      --border-focus: #A78BFA;
+      --text: #F4F6FB;
+      --text-muted: #8E98AB;
+      --accent-purple: #A78BFA;
+      --accent-cyan: #22D3EE;
+      --accent-mint: #5EEAD4;
+      --accent-amber: #FBBF24;
+      --gradient-brand: linear-gradient(135deg, #A78BFA 0%, #22D3EE 100%);
+      --gradient-card: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
+      --glow-purple: rgba(167, 139, 250, 0.15);
+      --glow-cyan: rgba(34, 211, 238, 0.15);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --shadow-desktop: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+      --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --desktop-max-w: 1380px;
+    }
+
+    [data-theme="light"] {
+      --bg: #F4F6FB;
+      --bg-alt: #E9ECF5;
+      --surface: #FFFFFF;
+      --surface-hover: #F8FAFC;
+      --surface-card: #FFFFFF;
+      --surface-border: rgba(20, 25, 40, 0.09);
+      --border-focus: #7C3AED;
+      --text: #0F172A;
+      --text-muted: #64748B;
+      --accent-purple: #7C3AED;
+      --accent-cyan: #0284C7;
+      --accent-mint: #0D9488;
+      --accent-amber: #D97706;
+      --glow-purple: rgba(124, 58, 237, 0.08);
+      --glow-cyan: rgba(2, 132, 199, 0.08);
+      --shadow-desktop: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
+      --shadow-card: 0 10px 30px -10px rgba(15, 23, 42, 0.06);
+    }
+
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      background-image: 
+        radial-gradient(circle at 15% 15%, var(--glow-purple) 0%, transparent 45%),
+        radial-gradient(circle at 85% 25%, var(--glow-cyan) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+
+    /* Desktop Container */
+    .container {
+      width: 100%;
+      max-width: var(--desktop-max-w);
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* Typography & Utilities */
+    .gradient-text {
+      background: var(--gradient-brand);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .badge-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px;
+      background: rgba(167, 139, 250, 0.1);
+      border: 1px solid rgba(167, 139, 250, 0.25);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      color: var(--accent-purple);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-mint);
+      box-shadow: 0 0 10px var(--accent-mint);
+      animation: pulseAnim 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseAnim {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.35); opacity: 0.5; }
+    }
+
+    /* Desktop Navbar */
+    .header-nav {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(7, 8, 12, 0.82);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--surface-border);
+      transition: background 0.3s ease;
+    }
+
+    [data-theme="light"] .header-nav {
+      background: rgba(244, 246, 251, 0.85);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 74px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--gradient-brand);
+      color: #05060A;
+      font-weight: 800;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(167, 139, 250, 0.35);
+    }
+
+    .brand-text h1 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .brand-text span {
+      font-size: 0.76rem;
+      color: var(--accent-cyan);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-menu a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: color 0.2s ease, transform 0.2s ease;
+      position: relative;
+    }
+
+    .nav-menu a:hover {
+      color: var(--text);
+    }
+
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-brand);
+      transition: width 0.25s var(--ease-out);
+      border-radius: 2px;
+    }
+
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-theme {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      color: var(--text);
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: all 0.2s var(--ease-out);
+    }
+
+    .btn-theme:hover {
+      border-color: var(--accent-purple);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(167, 139, 250, 0.2);
+    }
+
+    .btn-cta-nav {
+      padding: 10px 22px;
+      background: var(--text);
+      color: var(--bg);
+      border-radius: 12px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s var(--ease-out);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-cta-nav:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      opacity: 0.92;
+    }
+
+    /* Hero Section (Laptop / Desktop 2-Column Grid) */
+    .hero-section {
+      padding: 60px 0 80px;
+    }
+
+    .hero-laptop-grid {
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .hero-headline {
+      font-size: 3.4rem;
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 22px;
+    }
+
+    .hero-bio {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 620px;
+      margin-bottom: 28px;
+    }
+
+    .meta-pills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 34px;
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      box-shadow: var(--shadow-card);
+    }
+
+    .meta-pill span.icon {
+      color: var(--accent-cyan);
+    }
+
+    .hero-action-buttons {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary-desktop {
+      padding: 14px 28px;
+      background: var(--gradient-brand);
+      color: #05060A;
+      font-weight: 800;
+      font-size: 0.95rem;
+      border-radius: 14px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s var(--ease-out);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(167, 139, 250, 0.35);
+    }
+
+    .btn-primary-desktop:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(167, 139, 250, 0.45);
+    }
+
+    .btn-secondary-desktop {
+      padding: 14px 26px;
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--surface-border);
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 14px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s var(--ease-out);
+      cursor: pointer;
+    }
+
+    .btn-secondary-desktop:hover {
+      background: var(--surface-hover);
+      border-color: var(--accent-purple);
+      transform: translateY(-2px);
+    }
+
+    /* Laptop / Desktop IDE Code Frame */
+    .laptop-frame {
+      background: var(--surface-card);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-desktop);
+      transition: transform 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+      position: relative;
+    }
+
+    .laptop-frame:hover {
+      border-color: rgba(167, 139, 250, 0.4);
+      transform: translateY(-4px);
+    }
+
+    .ide-titlebar {
+      background: var(--bg-alt);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--surface-border);
+    }
+
+    .window-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .window-control {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .control-close { background: #FF5F56; }
+    .control-min { background: #FFBD2E; }
+    .control-max { background: #27C93F; }
+
+    .ide-tabs {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .ide-tab {
+      padding: 6px 14px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .ide-tab.active {
+      background: var(--surface);
+      color: var(--text);
+      font-weight: 600;
+      border: 1px solid var(--surface-border);
+    }
+
+    .ide-tab:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+    }
+
+    .ide-git-branch {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-mint);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .ide-editor-content {
+      padding: 24px 22px;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      line-height: 1.75;
+      background: var(--surface-card);
+      min-height: 250px;
+    }
+
+    .code-line {
+      display: flex;
+      gap: 16px;
+    }
+
+    .line-num {
+      color: rgba(142, 152, 171, 0.4);
+      user-select: none;
+      width: 24px;
+      text-align: right;
+    }
+
+    .syn-kw { color: var(--accent-purple); font-weight: 600; }
+    .syn-prop { color: var(--accent-cyan); }
+    .syn-str { color: var(--accent-mint); }
+    .syn-comment { color: var(--text-muted); font-style: italic; }
+    .syn-num { color: var(--accent-amber); }
+
+    .ide-status-bar {
+      background: var(--bg-alt);
+      padding: 10px 18px;
+      border-top: 1px solid var(--surface-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .ide-status-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ide-status-pill {
+      background: rgba(34, 211, 238, 0.12);
+      color: var(--accent-cyan);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    /* Section Layouts */
+    .section-wrap {
+      padding: 90px 0;
+      border-top: 1px solid var(--surface-border);
+    }
+
+    .section-header-desktop {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+    }
+
+    .section-header-left {
+      max-width: 680px;
+    }
+
+    .section-title-desktop {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .section-desc-desktop {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* About Desktop 2-Column Grid */
+    .about-desktop-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 32px;
+    }
+
+    .about-main-card {
+      background: var(--surface-card);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-xl);
+      padding: 44px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .about-lead-paragraph {
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.6;
+      margin-bottom: 18px;
+      color: var(--text);
+    }
+
+    .about-body-paragraph {
+      font-size: 1.02rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+
+    /* Desktop Statistics 4-Card Row */
+    .desktop-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      background: var(--bg-alt);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 14px;
+    }
+
+    .stat-box {
+      text-align: center;
+      padding: 6px;
+    }
+
+    .stat-number {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-box:nth-child(1) .stat-number { color: var(--accent-purple); }
+    .stat-box:nth-child(2) .stat-number { color: var(--accent-cyan); }
+    .stat-box:nth-child(3) .stat-number { color: var(--accent-mint); }
+    .stat-box:nth-child(4) .stat-number { color: var(--accent-amber); }
+
+    .stat-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* About Side Card */
+    .about-side-card {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .academic-info-card {
+      background: var(--surface-card);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .academic-icon-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .academic-symbol {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: rgba(34, 211, 238, 0.12);
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .competencies-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .competency-pill {
+      padding: 8px 16px;
+      background: var(--bg-alt);
+      border: 1px solid var(--surface-border);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .competency-pill span {
+      color: var(--accent-mint);
+    }
+
+    /* Desktop Toolkit / Skills (4-Column Layout) */
+    .toolkit-desktop-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .toolkit-card {
+      background: var(--surface-card);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      transition: all 0.25s var(--ease-out);
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .toolkit-card:hover {
+      border-color: rgba(167, 139, 250, 0.4);
+      transform: translateY(-4px);
+    }
+
+    .toolkit-card.featured {
+      grid-column: span 3;
+      background: linear-gradient(135deg, var(--surface-card) 0%, rgba(167, 139, 250, 0.06) 100%);
+      border-color: rgba(167, 139, 250, 0.3);
+    }
+
+    .toolkit-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+    }
+
+    .toolkit-icon-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .toolkit-icon-box {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: var(--bg-alt);
+      color: var(--accent-purple);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .toolkit-card:nth-child(2) .toolkit-icon-box { color: var(--accent-cyan); }
+    .toolkit-card:nth-child(3) .toolkit-icon-box { color: var(--accent-mint); }
+    .toolkit-card:nth-child(4) .toolkit-icon-box { color: var(--accent-amber); }
+
+    .toolkit-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+
+    .toolkit-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tech-tag {
+      padding: 8px 16px;
+      background: var(--bg-alt);
+      border: 1px solid var(--surface-border);
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+    }
+
+    .toolkit-card:hover .tech-tag {
+      color: var(--text);
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+
+    /* Projects Desktop 3-Column Grid */
+    .filter-desktop-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 34px;
+      background: var(--surface-card);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-lg);
+      padding: 10px 18px;
+    }
+
+    .filter-buttons-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .filter-tab-btn {
+      padding: 8px 20px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-tab-btn:hover {
+      color: var(--text);
+      background: var(--bg-alt);
+    }
+
+    .filter-tab-btn.active {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+
+    .projects-count-badge {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .projects-desktop-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .project-desktop-card {
+      background: var(--surface-card);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out);
+      box-shadow: var(--shadow-card);
+    }
+
+    .project-desktop-card:hover {
+      border-color: rgba(34, 211, 238, 0.45);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    .project-card-header {
+      height: 120px;
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--surface-border);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-category-pill {
+      position: absolute;
+      top: 16px;
+      left: 18px;
+      padding: 4px 12px;
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 8px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--accent-cyan);
+      letter-spacing: 0.6px;
+    }
+
+    .project-card-glyph {
+      font-size: 3.5rem;
+      color: var(--text-muted);
+      opacity: 0.35;
+      font-weight: 300;
+    }
+
+    .project-card-body {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .project-serial {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--accent-purple);
+      margin-bottom: 6px;
+    }
+
+    .project-card-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .project-card-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .project-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .project-tag-item {
+      padding: 4px 12px;
+      background: var(--bg-alt);
+      border: 1px solid var(--surface-border);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .project-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--surface-border);
+      padding-top: 18px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .project-card-footer span.arrow {
+      color: var(--accent-cyan);
+      transition: transform 0.2s ease;
+    }
+
+    .project-desktop-card:hover .project-card-footer span.arrow {
+      transform: translateX(4px);
+    }
+
+    /* Journey & Honors Desktop (2-Column Grid) */
+    .journey-honors-desktop-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 36px;
+    }
+
+    .timeline-desktop-container {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .timeline-desktop-item {
+      background: var(--surface-card);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      display: flex;
+      gap: 20px;
+      transition: all 0.2s var(--ease-out);
+      box-shadow: var(--shadow-card);
+    }
+
+    .timeline-desktop-item:hover {
+      border-color: rgba(167, 139, 250, 0.4);
+      transform: translateX(4px);
+    }
+
+    .timeline-desktop-item.active-now {
+      background: linear-gradient(135deg, var(--surface-card) 0%, rgba(167, 139, 250, 0.05) 100%);
+      border-color: rgba(167, 139, 250, 0.35);
+    }
+
+    .timeline-node-marker {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      box-shadow: 0 0 10px rgba(34, 211, 238, 0.4);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .timeline-desktop-item.active-now .timeline-node-marker {
+      background: var(--accent-purple);
+      box-shadow: 0 0 12px rgba(167, 139, 250, 0.6);
+    }
+
+    .timeline-era {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: 4px;
+      letter-spacing: 0.8px;
+    }
+
+    .timeline-role-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 2px;
+    }
+
+    .timeline-institution {
+      font-size: 0.94rem;
+      color: var(--accent-purple);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .timeline-narrative {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Honors Cards */
+    .honors-desktop-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .honor-desktop-card {
+      background: var(--surface-card);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      box-shadow: var(--shadow-card);
+      transition: all 0.25s var(--ease-out);
+    }
+
+    .honor-desktop-card:hover {
+      border-color: rgba(167, 139, 250, 0.4);
+      transform: translateY(-3px);
+    }
+
+    .honor-trophy-badge {
+      width: 76px;
+      height: 76px;
+      border-radius: 20px;
+      background: var(--gradient-brand);
+      color: #05060A;
+      font-size: 1.7rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 8px 24px rgba(167, 139, 250, 0.35);
+    }
+
+    .honor-merit-badge {
+      width: 76px;
+      height: 76px;
+      border-radius: 20px;
+      background: rgba(94, 234, 212, 0.15);
+      color: var(--accent-mint);
+      font-size: 1.45rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid rgba(94, 234, 212, 0.3);
+    }
+
+    /* Contact Section Desktop (2-Column Grid) */
+    .contact-desktop-card {
+      background: var(--surface-card);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-xl);
+      padding: 50px;
+      box-shadow: var(--shadow-desktop);
+    }
+
+    .contact-desktop-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+    }
+
+    .contact-card-item {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 20px;
+      background: var(--bg-alt);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-md);
+      margin-bottom: 16px;
+    }
+
+    .contact-symbol-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(167, 139, 250, 0.12);
+      color: var(--accent-purple);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+    }
+
+    .contact-card-item:nth-child(2) .contact-symbol-box {
+      background: rgba(34, 211, 238, 0.12);
+      color: var(--accent-cyan);
+    }
+
+    .contact-field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .contact-field-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .contact-text-input, .contact-textarea {
+      width: 100%;
+      padding: 14px 18px;
+      background: var(--bg-alt);
+      border: 1px solid var(--surface-border);
+      border-radius: 12px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+
+    .contact-text-input:focus, .contact-textarea:focus {
+      outline: none;
+      border-color: var(--accent-purple);
+      box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
+    }
+
+    .contact-textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    /* Desktop Modal Dialog (Widescreen Centered) */
+    .modal-desktop-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(5, 6, 10, 0.8);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 30px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s var(--ease-out);
+    }
+
+    .modal-desktop-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-desktop-container {
+      background: var(--surface-card);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-xl);
+      max-width: 760px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 44px;
+      position: relative;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+      transform: translateY(20px) scale(0.97);
+      transition: all 0.25s var(--ease-out);
+    }
+
+    .modal-desktop-overlay.active .modal-desktop-container {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-desktop-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bg-alt);
+      border: 1px solid var(--surface-border);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .modal-desktop-close:hover {
+      border-color: var(--accent-purple);
+      transform: scale(1.1);
+    }
+
+    /* Toast */
+    .toast-desktop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--surface-card);
+      border: 1px solid var(--accent-purple);
+      color: var(--text);
+      padding: 14px 26px;
+      border-radius: 14px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      box-shadow: var(--shadow-desktop);
+      z-index: 3000;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(12px);
+      transition: all 0.25s var(--ease-out);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toast-desktop.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* Desktop Footer */
+    .footer-desktop {
+      padding: 50px 0;
+      border-top: 1px solid var(--surface-border);
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .footer-desktop p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    /* Responsive Adaptation for smaller screens */
+    @media (max-width: 1024px) {
+      .hero-laptop-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .toolkit-desktop-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .toolkit-card.featured {
+        grid-column: span 2;
+      }
+      .projects-desktop-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .about-desktop-grid, .journey-honors-desktop-grid, .contact-desktop-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 20px;
+      }
+      .nav-menu {
+        display: none;
+      }
+      .hero-headline {
+        font-size: 2.3rem;
+      }
+      .toolkit-desktop-grid, .projects-desktop-grid {
+        grid-template-columns: 1fr;
+      }
+      .toolkit-card.featured {
+        grid-column: span 1;
+      }
+      .desktop-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .contact-desktop-card {
+        padding: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Desktop Header Navbar -->
+  <header class="header-nav">
+    <div class="container nav-container">
+      <a href="#" class="brand-logo">
+        <div class="brand-avatar">UA</div>
+        <div class="brand-text">
+          <h1>Umm-e-Aimen</h1>
+          <span>SOFTWARE ENGINEERING • COMSATS</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Navigation -->
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="#about">About</a></li>
+          <li><a href="#toolkit">Toolkit</a></li>
+          <li><a href="#projects">Work & Projects</a></li>
+          <li><a href="#journey">Journey</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Desktop Controls -->
+      <div class="nav-controls">
+        <button class="btn-theme" id="desktopThemeToggle" aria-label="Toggle Dark/Light Mode" title="Toggle Theme (Shortcut: T)">
+          <span id="themeToggleIcon">☀️</span>
+        </button>
+        <a href="#contact" class="btn-cta-nav">
+          <span>Let's Connect</span> ↗
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section (Laptop Widescreen Layout) -->
+    <section class="hero-section">
+      <div class="container hero-laptop-grid">
+        <!-- Left Column: Intro & Headline -->
+        <div>
+          <div class="badge-eyebrow">
+            <span class="pulse-dot"></span>
+            SOFTWARE ENGINEERING STUDENT
+          </div>
+
+          <h1 class="hero-headline">
+            Building my skills,<br>
+            <span class="gradient-text">one project at a time.</span>
+          </h1>
+
+          <p class="hero-bio">
+            I'm Umm-e-Aimen, a passionate Software Engineering student at COMSATS University Islamabad, Lahore Campus. Exploring web development, backend engineering, AI, and algorithmic problem solving.
+          </p>
+
+          <div class="meta-pills-row">
+            <div class="meta-pill">
+              <span class="icon">📍</span> Lahore, Pakistan
+            </div>
+            <div class="meta-pill">
+              <span class="icon">🎓</span> COMSATS University Islamabad
+            </div>
+            <div class="meta-pill">
+              <span class="icon">⚡</span> 3rd Semester • CGPA: 3.17*
+            </div>
+          </div>
+
+          <div class="hero-action-buttons">
+            <a href="#projects" class="btn-primary-desktop">
+              <span>Explore Projects (7)</span> ↗
+            </a>
+            <a href="#contact" class="btn-secondary-desktop">
+              <span>Get in Touch</span>
+            </a>
+            <button class="btn-secondary-desktop" onclick="copyEmailDesktop()">
+              <span>✉</span> Copy Email
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Laptop / Code Editor Frame -->
+        <div>
+          <div class="laptop-frame">
+            <!-- IDE Title Bar -->
+            <div class="ide-titlebar">
+              <div class="window-controls">
+                <span class="window-control control-close"></span>
+                <span class="window-control control-min"></span>
+                <span class="window-control control-max"></span>
+              </div>
+
+              <!-- IDE Tabs -->
+              <div class="ide-tabs">
+                <div class="ide-tab active" id="tabDeveloper" onclick="switchCodeTab('developer')">
+                  <span>📄</span> developer.ts
+                </div>
+                <div class="ide-tab" id="tabSkills" onclick="switchCodeTab('skills')">
+                  <span>⚙️</span> skills.json
+                </div>
+                <div class="ide-tab" id="tabTerminal" onclick="switchCodeTab('terminal')">
+                  <span>💻</span> bash
+                </div>
+              </div>
+
+              <div class="ide-git-branch">
+                <span>⌥ main*</span>
+              </div>
+            </div>
+
+            <!-- IDE Code Content -->
+            <div class="ide-editor-content" id="ideContent">
+              <!-- Rendered by JS -->
+            </div>
+
+            <!-- IDE Status Bar -->
+            <div class="ide-status-bar">
+              <div class="ide-status-left">
+                <span class="ide-status-pill">UTF-8</span>
+                <span>TypeScript 5.x</span>
+                <span>Prettier: ✓</span>
+              </div>
+              <div>
+                <span>COMSATS SE '29</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section (Laptop Desktop Grid) -->
+    <section class="section-wrap" id="about">
+      <div class="container">
+        <div class="section-header-desktop">
+          <div class="section-header-left">
+            <div class="badge-eyebrow">01 / ABOUT</div>
+            <h2 class="section-title-desktop">
+              Curious by nature.<br>
+              <span class="gradient-text">Builder by practice.</span>
+            </h2>
+          </div>
+          <div class="projects-count-badge">
+            Lahore, Pakistan • Ready for Opportunities
+          </div>
+        </div>
+
+        <div class="about-desktop-grid">
+          <!-- Main About Card -->
+          <div class="about-main-card">
+            <p class="about-lead-paragraph">
+              I am a Software Engineering student with a solid academic foundation in programming, data structures, object-oriented systems, mobile interfaces, and web technologies.
+            </p>
+            <p class="about-body-paragraph">
+              My technical journey encompasses practical implementations ranging from JavaFX graphic interfaces and C++/SFML games with custom pathfinding AI to cross-platform React Native apps and responsive JavaScript web pages. I enjoy dissecting complex logic, understanding core systems, and turning technical concepts into polished applications.
+            </p>
+
+            <!-- 4-Column Stats Grid -->
+            <div class="desktop-stats-grid">
+              <div class="stat-box">
+                <div class="stat-number">3.17</div>
+                <div class="stat-label">CGPA (3rd Sem)*</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-number">7+</div>
+                <div class="stat-label">Completed Projects</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-number">2029</div>
+                <div class="stat-label">Expected Grad</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-number">1st</div>
+                <div class="stat-label">Exhibition Award</div>
+              </div>
+            </div>
+            <p style="font-size: 0.76rem; color: var(--text-muted);">*CGPA documented on academic resume following completion of the 3rd semester.</p>
+          </div>
+
+          <!-- Side Information Card -->
+          <div class="about-side-card">
+            <div class="academic-info-card">
+              <div class="academic-icon-header">
+                <div class="academic-symbol">🏛️</div>
+                <div>
+                  <h3 style="font-size: 1.15rem; font-weight: 800;">Academic Institution</h3>
+                  <p style="font-size: 0.85rem; color: var(--accent-cyan);">COMSATS University Islamabad</p>
+                </div>
+              </div>
+              <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;">
+                Enrolled in the Bachelor of Science in Software Engineering (BS SE) program at the Lahore Campus (Feb 2025 – Feb 2029).
+              </p>
+            </div>
+
+            <div class="academic-info-card">
+              <h3 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 8px;">Core Competencies</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Verified interpersonal & technical attributes:</p>
+              <div class="competencies-cloud">
+                <div class="competency-pill"><span>✓</span> Attention to Detail</div>
+                <div class="competency-pill"><span>✓</span> Problem Solving</div>
+                <div class="competency-pill"><span>✓</span> Teamwork</div>
+                <div class="competency-pill"><span>✓</span> Eagerness to Learn</div>
+                <div class="competency-pill"><span>✓</span> Adaptability</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Toolkit / Skills (4-Column Layout) -->
+    <section class="section-wrap" id="toolkit">
+      <div class="container">
+        <div class="section-header-desktop">
+          <div class="section-header-left">
+            <div class="badge-eyebrow">02 / TOOLKIT</div>
+            <h2 class="section-title-desktop">
+              Skills I'm building <span class="gradient-text">with.</span>
+            </h2>
+            <p class="section-desc-desktop">
+              Foundational proficiencies across computer science, system development, and modern frameworks.
+            </p>
+          </div>
+        </div>
+
+        <div class="toolkit-desktop-grid">
+          <!-- Programming -->
+          <div class="toolkit-card">
+            <div class="toolkit-header">
+              <div class="toolkit-icon-title">
+                <div class="toolkit-icon-box">⌘</div>
+                <div class="toolkit-title">Programming</div>
+              </div>
+            </div>
+            <div class="toolkit-chips">
+              <span class="tech-tag">Java</span>
+              <span class="tech-tag">C++</span>
+              <span class="tech-tag">OOP</span>
+              <span class="tech-tag">DSA</span>
+            </div>
+          </div>
+
+          <!-- Web Development -->
+          <div class="toolkit-card">
+            <div class="toolkit-header">
+              <div class="toolkit-icon-title">
+                <div class="toolkit-icon-box">⌁</div>
+                <div class="toolkit-title">Web Development</div>
+              </div>
+            </div>
+            <div class="toolkit-chips">
+              <span class="tech-tag">HTML5</span>
+              <span class="tech-tag">CSS3</span>
+              <span class="tech-tag">JavaScript (ES6+)</span>
+              <span class="tech-tag">DOM APIs</span>
+            </div>
+          </div>
+
+          <!-- Mobile Development -->
+          <div class="toolkit-card">
+            <div class="toolkit-header">
+              <div class="toolkit-icon-title">
+                <div class="toolkit-icon-box">◈</div>
+                <div class="toolkit-title">Mobile Engineering</div>
+              </div>
+            </div>
+            <div class="toolkit-chips">
+              <span class="tech-tag">React Native</span>
+              <span class="tech-tag">State Handling</span>
+              <span class="tech-tag">Mobile UI</span>
+            </div>
+          </div>
+
+          <!-- Problem Solving -->
+          <div class="toolkit-card">
+            <div class="toolkit-header">
+              <div class="toolkit-icon-title">
+                <div class="toolkit-icon-box">◎</div>
+                <div class="toolkit-title">Problem Solving</div>
+              </div>
+            </div>
+            <div class="toolkit-chips">
+              <span class="tech-tag">BFS & DFS</span>
+              <span class="tech-tag">A* Algorithm</span>
+              <span class="tech-tag">Custom Stacks/Queues</span>
+              <span class="tech-tag">Linked Lists</span>
+            </div>
+          </div>
+
+          <!-- Tools -->
+          <div class="toolkit-card">
+            <div class="toolkit-header">
+              <div class="toolkit-icon-title">
+                <div class="toolkit-icon-box">▣</div>
+                <div class="toolkit-title">Developer Tools</div>
+              </div>
+            </div>
+            <div class="toolkit-chips">
+              <span class="tech-tag">Git & GitHub</span>
+              <span class="tech-tag">VS Code</span>
+              <span class="tech-tag">MS Word & PowerPoint</span>
+            </div>
+          </div>
+
+          <!-- Featured: Currently Learning -->
+          <div class="toolkit-card featured">
+            <div class="toolkit-header">
+              <div class="toolkit-icon-title">
+                <div class="toolkit-icon-box" style="color: var(--accent-mint); background: rgba(94, 234, 212, 0.12);">↗</div>
+                <div>
+                  <div class="toolkit-title">Currently Learning & Specializing</div>
+                  <p style="font-size: 0.85rem; color: var(--text-muted);">Active growth focus in web, cloud, and backend engineering:</p>
+                </div>
+              </div>
+              <span style="font-size: 0.75rem; font-weight: 800; padding: 6px 14px; background: rgba(167, 139, 250, 0.15); color: var(--accent-purple); border-radius: 999px;">GROWTH TARGET</span>
+            </div>
+            <div class="toolkit-chips">
+              <span class="tech-tag" style="border-color: var(--accent-purple); color: var(--accent-purple); font-weight: 700;">MERN Stack (MongoDB, Express, React, Node.js)</span>
+              <span class="tech-tag" style="border-color: var(--accent-cyan); color: var(--accent-cyan); font-weight: 700;">Backend Engineering & REST APIs</span>
+              <span class="tech-tag" style="border-color: var(--accent-mint); color: var(--accent-mint); font-weight: 700;">Artificial Intelligence Integration</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Selected Work / Projects (3-Column Desktop Grid) -->
+    <section class="section-wrap" id="projects">
+      <div class="container">
+        <div class="section-header-desktop">
+          <div class="section-header-left">
+            <div class="badge-eyebrow">03 / SELECTED WORK</div>
+            <h2 class="section-title-desktop">
+              Projects that <span class="gradient-text">made me learn.</span>
+            </h2>
+            <p class="section-desc-desktop">
+              Interactive portfolio of 7 hands-on projects developed across academic coursework and personal software initiatives.
+            </p>
+          </div>
+        </div>
+
+        <!-- Desktop Filter Bar -->
+        <div class="filter-desktop-bar">
+          <div class="filter-buttons-group">
+            <button class="filter-tab-btn active" data-filter="all">All Projects</button>
+            <button class="filter-tab-btn" data-filter="cpp">C++ / SFML</button>
+            <button class="filter-tab-btn" data-filter="java">Java / JavaFX</button>
+            <button class="filter-tab-btn" data-filter="react-native">React Native</button>
+            <button class="filter-tab-btn" data-filter="web">Web (HTML/CSS/JS)</button>
+          </div>
+
+          <div class="projects-count-badge" id="projectFilterStatus">
+            Showing all 7 projects
+          </div>
+        </div>
+
+        <!-- 3-Column Projects Grid -->
+        <div class="projects-desktop-grid" id="desktopProjectsGrid">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey & Recognition (Desktop 2-Column Grid) -->
+    <section class="section-wrap" id="journey">
+      <div class="container">
+        <div class="section-header-desktop">
+          <div class="section-header-left">
+            <div class="badge-eyebrow">04 / JOURNEY & RECOGNITION</div>
+            <h2 class="section-title-desktop">
+              Academic milestones & <span class="gradient-text">honors.</span>
+            </h2>
+            <p class="section-desc-desktop">
+              Tracing educational rigor, competitive achievements, and upcoming career milestones.
+            </p>
+          </div>
+        </div>
+
+        <div class="journey-honors-desktop-grid">
+          <!-- Left Column: Timeline -->
+          <div>
+            <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 20px;">Educational Roadmap</h3>
+            <div class="timeline-desktop-container">
+              <!-- 1 -->
+              <div class="timeline-desktop-item active-now">
+                <div class="timeline-node-marker"></div>
+                <div>
+                  <div class="timeline-era">FEB 2025 — FEB 2029</div>
+                  <h4 class="timeline-role-title">BS Software Engineering</h4>
+                  <div class="timeline-institution">COMSATS University Islamabad — Lahore Campus</div>
+                  <p class="timeline-narrative">
+                    Undergraduate study in 3rd semester, achieving 3.17 CGPA with foundational focus in OOP, DSA, software development lifecycle, and databases.
+                  </p>
+                </div>
+              </div>
+
+              <!-- 2 -->
+              <div class="timeline-desktop-item">
+                <div class="timeline-node-marker"></div>
+                <div>
+                  <div class="timeline-era">CURRENT ENROLLMENT</div>
+                  <h4 class="timeline-role-title">MERN Stack Web Development</h4>
+                  <div class="timeline-institution">Hunarmand Punjab IT Program</div>
+                  <p class="timeline-narrative">
+                    Practical full-stack training covering MongoDB, Express, React, and Node.js to enhance web and backend development proficiencies.
+                  </p>
+                </div>
+              </div>
+
+              <!-- 3 -->
+              <div class="timeline-desktop-item">
+                <div class="timeline-node-marker"></div>
+                <div>
+                  <div class="timeline-era">UPCOMING OBJECTIVE</div>
+                  <h4 class="timeline-role-title">Software Engineering Internship</h4>
+                  <div class="timeline-institution">Industry Practical Experience Goal</div>
+                  <p class="timeline-narrative">
+                    Actively preparing to apply Java OOP, C++ DSA, React Native, and web development skills within a structured development team.
+                  </p>
+                </div>
+              </div>
+
+              <!-- 4 -->
+              <div class="timeline-desktop-item">
+                <div class="timeline-node-marker"></div>
+                <div>
+                  <div class="timeline-era">2022 — 2024</div>
+                  <h4 class="timeline-role-title">HSSC (ICS-Physics) • 80%</h4>
+                  <div class="timeline-institution">Unique College for Girls 109-A</div>
+                  <p class="timeline-narrative">
+                    Completed Intermediate in Computer Science with Physics, securing an 80% distinction academic score.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Honors & Recognition -->
+          <div>
+            <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 20px;">Featured Awards</h3>
+            <div class="honors-desktop-stack">
+              <!-- Award 1 -->
+              <div class="honor-desktop-card">
+                <div class="honor-trophy-badge">1st</div>
+                <div>
+                  <span style="font-size: 0.75rem; font-weight: 800; color: var(--accent-purple); letter-spacing: 0.8px;">PHYSICS EXHIBITION</span>
+                  <h4 style="font-size: 1.25rem; font-weight: 800; margin: 4px 0;">1st Position Award</h4>
+                  <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55;">
+                    Awarded First Position for engineering a functional Pulse Motor model, demonstrating electromagnetism and motor circuit mechanics.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Award 2 -->
+              <div class="honor-desktop-card">
+                <div class="honor-merit-badge">80%</div>
+                <div>
+                  <span style="font-size: 0.75rem; font-weight: 800; color: var(--accent-mint); letter-spacing: 0.8px;">ACADEMIC DISTINCTION</span>
+                  <h4 style="font-size: 1.25rem; font-weight: 800; margin: 4px 0;">Intermediate Merit</h4>
+                  <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55;">
+                    Achieved 80% marks in Intermediate Computer Science with Physics at Unique College for Girls 109-A.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section (Desktop Split Layout) -->
+    <section class="section-wrap" id="contact">
+      <div class="container">
+        <div class="contact-desktop-card">
+          <div class="badge-eyebrow">05 / CONTACT & CONNECT</div>
+          <h2 class="section-title-desktop" style="margin-bottom: 24px;">
+            Let's build something<br>
+            <span class="gradient-text">worth showing.</span>
+          </h2>
+
+          <div class="contact-desktop-grid">
+            <!-- Left Contact Info -->
+            <div>
+              <p style="font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 30px;">
+                I am actively seeking Software Engineering internship opportunities and collaborative technical projects. Feel free to reach out directly via email or message.
+              </p>
+
+              <div class="contact-card-item">
+                <div class="contact-symbol-box">✉</div>
+                <div>
+                  <small style="font-size: 0.72rem; font-weight: 800; color: var(--accent-cyan); text-transform: uppercase;">Direct Email</small>
+                  <p style="font-size: 1.05rem; font-weight: 700;">ummeaimen368@gmail.com</p>
+                </div>
+              </div>
+
+              <div class="contact-card-item">
+                <div class="contact-symbol-box">📍</div>
+                <div>
+                  <small style="font-size: 0.72rem; font-weight: 800; color: var(--accent-purple); text-transform: uppercase;">Location & Timezone</small>
+                  <p style="font-size: 1.05rem; font-weight: 700;">Lahore, Pakistan • PKT (UTC+5)</p>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 14px; margin-top: 24px;">
+                <a href="mailto:ummeaimen368@gmail.com?subject=Software%20Engineering%20Internship%20Inquiry" class="btn-primary-desktop">
+                  <span>Send Direct Email</span> ↗
+                </a>
+                <button class="btn-secondary-desktop" onclick="copyEmailDesktop()">
+                  <span>Copy Address</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Right Message Composer -->
+            <form onsubmit="handleDesktopForm(event)">
+              <div class="contact-field-group">
+                <label class="contact-field-label" for="desktopSender">Your Name / Organization</label>
+                <input type="text" id="desktopSender" class="contact-text-input" placeholder="e.g. Engineering Team / Hiring Lead" required>
+              </div>
+
+              <div class="contact-field-group">
+                <label class="contact-field-label" for="desktopSubject">Subject</label>
+                <input type="text" id="desktopSubject" class="contact-text-input" placeholder="e.g. Software Engineering Internship Opportunity" required>
+              </div>
+
+              <div class="contact-field-group">
+                <label class="contact-field-label" for="desktopBody">Message</label>
+                <textarea id="desktopBody" class="contact-textarea" placeholder="Describe the role, project, or inquiry..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn-primary-desktop" style="width: 100%; justify-content: center; margin-top: 8px;">
+                <span>Draft Email in Client</span> ✉
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Desktop Footer -->
+  <footer class="footer-desktop">
+    <div class="container">
+      <p><strong>UMM-E-AIMEN</strong> • Software Engineering Portfolio</p>
+      <p>COMSATS University Islamabad, Lahore Campus • Crafted for Laptop & Desktop Screens</p>
+    </div>
+  </footer>
+
+  <!-- Modal Dialog for Detailed Project Case Study -->
+  <div class="modal-desktop-overlay" id="desktopProjectModal" onclick="closeDesktopModalBackdrop(event)">
+    <div class="modal-desktop-container">
+      <button class="modal-desktop-close" onclick="closeDesktopModal()" aria-label="Close modal dialog">&times;</button>
+      <div id="modalEyebrowDesktop" style="font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 8px;">PROJECT</div>
+      <h2 id="modalTitleDesktop" style="font-size: 2rem; font-weight: 800; margin-bottom: 4px;">Project Title</h2>
+      <div id="modalTechDesktop" style="font-size: 0.95rem; color: var(--accent-purple); font-weight: 600; margin-bottom: 24px;">Technology</div>
+
+      <div style="font-size: 0.95rem; font-weight: 700; margin-bottom: 12px;">Implementation & Overview</div>
+      <ul id="modalBulletsDesktop" style="list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; color: var(--text-muted); font-size: 0.95rem; line-height: 1.65;"></ul>
+
+      <div style="height: 1px; background: var(--surface-border); margin: 24px 0;"></div>
+
+      <div style="font-size: 0.95rem; font-weight: 700; margin-bottom: 12px;">Technical Feature Highlights</div>
+      <div id="modalFeaturesDesktop" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px;"></div>
+
+      <div style="font-size: 0.95rem; font-weight: 700; margin-bottom: 12px;">Tags & Conceptual Pillars</div>
+      <div id="modalTagsDesktop" style="display: flex; flex-wrap: wrap; gap: 8px;"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-desktop" id="desktopToast">
+    <span>✓</span> Email copied: ummeaimen368@gmail.com
+  </div>
+
+  <!-- JavaScript for Interactivity, Tabs & Modals -->
+  <script>
+    // Desktop Code Tabs Data
+    const codeFiles = {
+      developer: `
+<span class="code-line"><span class="line-num">1</span><span><span class="syn-kw">interface</span> <span class="syn-prop">SoftwareEngineer</span> {</span></span>
+<span class="code-line"><span class="line-num">2</span><span>  name: <span class="syn-str">'Umm-e-Aimen'</span>;</span></span>
+<span class="code-line"><span class="line-num">3</span><span>  university: <span class="syn-str">'COMSATS University Islamabad'</span>;</span></span>
+<span class="code-line"><span class="line-num">4</span><span>  degree: <span class="syn-str">'BS Software Engineering'</span>;</span></span>
+<span class="code-line"><span class="line-num">5</span><span>  semester: <span class="syn-num">3</span>;</span></span>
+<span class="code-line"><span class="line-num">6</span><span>  cgpa: <span class="syn-num">3.17</span>;</span></span>
+<span class="code-line"><span class="line-num">7</span><span>  location: <span class="syn-str">'Lahore, Pakistan'</span>;</span></span>
+<span class="code-line"><span class="line-num">8</span><span>  seeking: <span class="syn-str">'Software Engineering Internship'</span>;</span></span>
+<span class="code-line"><span class="line-num">9</span><span>}</span></span>
+<span class="code-line"><span class="line-num">10</span><span></span></span>
+<span class="code-line"><span class="line-num">11</span><span><span class="syn-comment">// Turning fundamental CS logic into working software 🚀</span></span></span>`,
+
+      skills: `
+<span class="code-line"><span class="line-num">1</span><span>{</span></span>
+<span class="code-line"><span class="line-num">2</span><span>  <span class="syn-prop">"languages"</span>: [<span class="syn-str">"Java (OOP)"</span>, <span class="syn-str">"C++ (DSA)"</span>, <span class="syn-str">"JavaScript (ES6)"</span>],</span></span>
+<span class="code-line"><span class="line-num">3</span><span>  <span class="syn-prop">"frontend"</span>: [<span class="syn-str">"React Native"</span>, <span class="syn-str">"HTML5"</span>, <span class="syn-str">"CSS3"</span>, <span class="syn-str">"JavaFX"</span>],</span></span>
+<span class="code-line"><span class="line-num">4</span><span>  <span class="syn-prop">"problemSolving"</span>: [<span class="syn-str">"Stack"</span>, <span class="syn-str">"Queue"</span>, <span class="syn-str">"Linked List"</span>, <span class="syn-str">"BFS"</span>, <span class="syn-str">"DFS"</span>, <span class="syn-str">"A*"</span>],</span></span>
+<span class="code-line"><span class="line-num">5</span><span>  <span class="syn-prop">"learning"</span>: [<span class="syn-str">"MERN Stack"</span>, <span class="syn-str">"Node.js Backend"</span>, <span class="syn-str">"AI Systems"</span>]</span></span>
+<span class="code-line"><span class="line-num">6</span><span>}</span></span>`,
+
+      terminal: `
+<span class="code-line"><span class="line-num">1</span><span><span class="syn-kw">aimen@laptop</span>:<span class="syn-str">~/portfolio</span>$ ./run_profile_checks.sh</span></span>
+<span class="code-line"><span class="line-num">2</span><span>[INFO] Verifying candidate profile: UMM-E-AIMEN</span></span>
+<span class="code-line"><span class="line-num">3</span><span>[PASS] Academic Track: COMSATS BS Software Engineering (2025-2029)</span></span>
+<span class="code-line"><span class="line-num">4</span><span>[PASS] 7 Projects Validated across C++, Java, React Native, Web</span></span>
+<span class="code-line"><span class="line-num">5</span><span>[PASS] 1st Position Award: Pulse Motor Physics Exhibition</span></span>
+<span class="code-line"><span class="line-num">6</span><span><span class="syn-mint" style="color: var(--accent-mint)">[READY] Status: Open for Software Engineering Internships</span></span></span>`
+    };
+
+    function switchCodeTab(tabKey) {
+      document.querySelectorAll(".ide-tab").forEach(t => t.classList.remove("active"));
+      if (tabKey === 'developer') document.getElementById("tabDeveloper").classList.add("active");
+      if (tabKey === 'skills') document.getElementById("tabSkills").classList.add("active");
+      if (tabKey === 'terminal') document.getElementById("tabTerminal").classList.add("active");
+
+      document.getElementById("ideContent").innerHTML = codeFiles[tabKey] || codeFiles.developer;
+    }
+
+    // Initialize with developer.ts tab
+    switchCodeTab('developer');
+
+    // Projects Data
+    const allProjects = [
+      {
+        id: "trapscape",
+        num: "01",
+        title: "TRAPSCAPE",
+        category: "cpp",
+        catLabel: "C++ / SFML",
+        glyph: "⌗",
+        tech: "C++, SFML, Custom DSA",
+        desc: "Maze-based survival game in C++ applying OOP and custom data structures (Stack, Queue, Linked List) with BFS, DFS, and A* pathfinding AI.",
+        bullets: [
+          "Developed a maze-based survival game in C++ utilizing concepts of Object-Oriented Programming and Data Structures.",
+          "Implemented custom data structures and algorithms including Stack, Queue, Linked List, BFS, DFS, and A* pathfinding for intelligent AI movement.",
+          "Engineered dynamic maze generation, authentication system, leaderboard, coin collection, and 2D graphical rendering using SFML."
+        ],
+        features: [
+          "Custom Stack, Queue & Linked List implementations",
+          "Pathfinding AI driven by A*, BFS, and DFS",
+          "Procedural dynamic maze generation",
+          "Secure user authentication & persistent leaderboard",
+          "Coin collection mechanics & SFML rendering engine"
+        ],
+        tags: ["Stack", "Queue", "Linked List", "BFS", "DFS", "A*", "OOP", "SFML"]
+      },
+      {
+        id: "mystery_maze",
+        num: "02",
+        title: "Mystery Maze",
+        category: "java",
+        catLabel: "Java / JavaFX",
+        glyph: "▦",
+        tech: "Java, JavaFX, OOP Architecture",
+        desc: "Interactive GUI maze game applying core OOP principles including inheritance and abstraction with player navigation.",
+        bullets: [
+          "Developed a GUI-based maze game using Java and JavaFX, applying OOP concepts including inheritance and abstraction.",
+          "Designed interactive player navigation, collision boundaries, and game state logic with a responsive JavaFX graphical interface."
+        ],
+        features: [
+          "Full JavaFX desktop graphical user interface",
+          "Clean inheritance hierarchies & abstract class models",
+          "Interactive keyboard-based player navigation",
+          "Dynamic game event and state management logic"
+        ],
+        tags: ["Java", "JavaFX", "OOP", "Inheritance", "Abstraction", "GUI"]
+      },
+      {
+        id: "gpa_predictor",
+        num: "03",
+        title: "GPA Security Zone Predictor",
+        category: "react-native",
+        catLabel: "React Native",
+        glyph: "◎",
+        tech: "React Native, State Management",
+        desc: "Dual-screen mobile app predicting student GPA security zones based on prior academic scores and weekly study hours.",
+        bullets: [
+          "Built a two-screen React Native mobile app where students enter their previous GPA and study hours.",
+          "The app predicts whether the student is in a secure zone to maintain or improve their academic standing based on inputs."
+        ],
+        features: [
+          "Cross-platform 2-screen navigation flow",
+          "Interactive input forms for GPA and study commitment",
+          "Predictive zone estimation algorithm",
+          "Clear feedback and actionable student guidance"
+        ],
+        tags: ["React Native", "Mobile", "Two-Screen UI", "State Management"]
+      },
+      {
+        id: "todo_list",
+        num: "04",
+        title: "To-Do List App",
+        category: "react-native",
+        catLabel: "React Native",
+        glyph: "✓",
+        tech: "React Native, State Hooks",
+        desc: "Cross-platform mobile task manager featuring create, complete, and delete operations with live state management.",
+        bullets: [
+          "Built a cross-platform To-Do List app in React Native with add, complete, and delete task capabilities.",
+          "Leveraged React state management to handle real-time task updates and responsive list rendering."
+        ],
+        features: [
+          "Cross-platform responsive mobile layout",
+          "Create, mark complete, and delete task capabilities",
+          "Real-time list rendering and state updates"
+        ],
+        tags: ["React Native", "Mobile", "Task Management", "State Handling"]
+      },
+      {
+        id: "counter_web",
+        num: "05",
+        title: "Counter Web App",
+        category: "web",
+        catLabel: "HTML / CSS / JS",
+        glyph: "01",
+        tech: "HTML, CSS, JavaScript",
+        desc: "Responsive browser counter showcasing clean DOM interaction, state tracking, and event handling in JavaScript.",
+        bullets: [
+          "Created a responsive Counter App web page in HTML, CSS as frontend and JavaScript to call its functions and do all its functionalities."
+        ],
+        features: [
+          "Responsive HTML/CSS structured layout",
+          "JavaScript functions managing state and counter operations",
+          "Interactive UI button actions with DOM manipulation"
+        ],
+        tags: ["HTML", "CSS", "JavaScript", "Frontend", "DOM"]
+      },
+      {
+        id: "calculator_web",
+        num: "06",
+        title: "Calculator",
+        category: "web",
+        catLabel: "HTML / CSS / JS",
+        glyph: "+",
+        tech: "HTML, CSS, JavaScript",
+        desc: "Everyday arithmetic calculator built with clean HTML structure, custom CSS styling, and math execution logic in JS.",
+        bullets: [
+          "Created a basic calculator that performs daily arithmetic tasks with the help of HTML, CSS, and JavaScript."
+        ],
+        features: [
+          "Daily arithmetic calculation engine",
+          "Structured keypad and display interface",
+          "Edge-case evaluation and error clearing logic"
+        ],
+        tags: ["HTML", "CSS", "JavaScript", "Math Logic"]
+      },
+      {
+        id: "snake_game",
+        num: "07",
+        title: "Snake Game",
+        category: "cpp",
+        catLabel: "C++ / Console",
+        glyph: "⚑",
+        tech: "C++, Console DSA",
+        desc: "Classic console Snake game implementing loops, arrays, movement tracking, and real-time collision detection logic.",
+        bullets: [
+          "Built a console-based Snake Game in C++ implementing core programming principles including loops, arrays, and conditional statements.",
+          "Applied basic DSA concepts for movement tracking and collision detection logic."
+        ],
+        features: [
+          "Console game loop with real-time keyboard inputs",
+          "Array-based multi-segment snake movement tracking",
+          "Border and self-collision detection algorithms"
+        ],
+        tags: ["C++", "Console", "DSA", "Arrays", "Collision"]
+      }
+    ];
+
+    // Render Projects into 3-Column Desktop Grid
+    const projectsGrid = document.getElementById("desktopProjectsGrid");
+    const statusText = document.getElementById("projectFilterStatus");
+
+    function renderDesktopProjects(filter = "all") {
+      projectsGrid.innerHTML = "";
+      const filtered = filter === "all" 
+        ? allProjects 
+        : allProjects.filter(p => p.category === filter);
+
+      statusText.textContent = `Showing ${filtered.length} of ${allProjects.length} projects`;
+
+      filtered.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "project-desktop-card";
+        card.onclick = () => openDesktopModal(p.id);
+
+        card.innerHTML = `
+          <div class="project-card-header">
+            <span class="project-category-pill">${p.catLabel}</span>
+            <span class="project-card-glyph">${p.glyph}</span>
+          </div>
+          <div class="project-card-body">
+            <div class="project-serial">PROJECT ${p.num}</div>
+            <h3 class="project-card-title">${p.title}</h3>
+            <p class="project-card-desc">${p.desc}</p>
+            <div class="project-card-tags">
+              ${p.tags.slice(0, 4).map(t => `<span class="project-tag-item">${t}</span>`).join("")}
+            </div>
+            <div class="project-card-footer">
+              <span>View Case Study</span>
+              <span class="arrow">↗</span>
+            </div>
+          </div>
+        `;
+        projectsGrid.appendChild(card);
+      });
+    }
+
+    // Filter Buttons Listener
+    document.querySelectorAll(".filter-tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".filter-tab-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderDesktopProjects(btn.dataset.filter);
+      });
+    });
+
+    // Modal Dialog Controls
+    const modal = document.getElementById("desktopProjectModal");
+    const mEyebrow = document.getElementById("modalEyebrowDesktop");
+    const mTitle = document.getElementById("modalTitleDesktop");
+    const mTech = document.getElementById("modalTechDesktop");
+    const mBullets = document.getElementById("modalBulletsDesktop");
+    const mFeatures = document.getElementById("modalFeaturesDesktop");
+    const mTags = document.getElementById("modalTagsDesktop");
+
+    function openDesktopModal(id) {
+      const proj = allProjects.find(item => item.id === id);
+      if (!proj) return;
+
+      mEyebrow.textContent = `PROJECT SPECIFICATION / ${proj.num}`;
+      mTitle.textContent = proj.title;
+      mTech.textContent = proj.tech;
+
+      mBullets.innerHTML = proj.bullets.map(b => `<li style="position: relative; padding-left: 20px;"><span style="position: absolute; left: 0; color: var(--accent-cyan); font-weight: bold;">•</span> ${b}</li>`).join("");
+      mFeatures.innerHTML = proj.features.map(f => `<div style="display: flex; align-items: center; gap: 10px; font-size: 0.92rem;"><span style="color: var(--accent-mint); font-weight: bold;">✓</span> ${f}</div>`).join("");
+      mTags.innerHTML = proj.tags.map(t => `<span class="project-tag-item">${t}</span>`).join("");
+
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeDesktopModal() {
+      modal.classList.remove("active");
+      document.body.style.overflow = "auto";
+    }
+
+    function closeDesktopModalBackdrop(e) {
+      if (e.target === modal) {
+        closeDesktopModal();
+      }
+    }
+
+    // Keyboard Shortcuts
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeDesktopModal();
+      if ((e.key === "t" || e.key === "T") && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+        toggleTheme();
+      }
+    });
+
+    // Toast and Copy Email
+    function copyEmailDesktop() {
+      const email = "ummeaimen368@gmail.com";
+      navigator.clipboard.writeText(email).then(() => {
+        showDesktopToast(`Copied to clipboard: ${email}`);
+      }).catch(() => {
+        showDesktopToast(`Email: ${email}`);
+      });
+    }
+
+    function showDesktopToast(text) {
+      const toast = document.getElementById("desktopToast");
+      toast.innerHTML = `<span>✓</span> ${text}`;
+      toast.classList.add("active");
+      setTimeout(() => {
+        toast.classList.remove("active");
+      }, 3200);
+    }
+
+    // Email Form Handler
+    function handleDesktopForm(e) {
+      e.preventDefault();
+      const sender = document.getElementById("desktopSender").value;
+      const subject = document.getElementById("desktopSubject").value || "Software Engineering Opportunity";
+      const body = document.getElementById("desktopBody").value;
+
+      const messageContent = `From: ${sender}\n\n${body}`;
+      window.location.href = `mailto:ummeaimen368@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(messageContent)}`;
+    }
+
+    // Theme Switcher
+    const themeBtn = document.getElementById("desktopThemeToggle");
+    const themeIcon = document.getElementById("themeToggleIcon");
+
+    function setTheme(theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+      themeIcon.textContent = theme === "light" ? "🌙" : "☀️";
+      localStorage.setItem("theme_pref", theme);
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute("data-theme");
+      setTheme(current === "light" ? "dark" : "light");
+    }
+
+    themeBtn.addEventListener("click", toggleTheme);
+
+    // Init Theme
+    const savedTheme = localStorage.getItem("theme_pref") || "dark";
+    setTheme(savedTheme);
+
+    // Init Projects
+    renderDesktopProjects();
+  </script>
+</body>
+</html>
